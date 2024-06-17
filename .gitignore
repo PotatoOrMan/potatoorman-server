@@ -11,4 +11,4 @@ frontend/package.json
 frontend/README.md
 
 # db
-config/
+config/db.js
