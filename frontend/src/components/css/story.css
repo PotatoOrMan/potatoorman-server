@@ -1,0 +1,68 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+@font-face {
+    font-family: 'KCC-Hanbit';
+    font-weight: 500;
+    font-style: normal;
+    src: url("../fonts/KCC-Hanbit.woff");
+}
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: 0.2s;
+    /* overflow: hidden; 이미지가 화면 밖으로 넘어가는 것을 막음 */
+}
+
+.storyContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.storyDiv {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 80px;
+    height: 100vh;  /* 대화창을 제일 아래쪽에 배치하기 위함 */
+}
+.person-text, .text-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'KCC-Hanbit';
+    font-size: 50px;
+}
+.person-text {
+    width: 317px;
+    height: 118px;
+    background-color: #FCDC2A;
+    border-radius: 30px;
+    position: absolute;
+    margin-bottom: 143px;
+    margin-right: 917px;
+    z-index: 20;
+}
+.text-box {
+    width: 1332px;
+    height: 202px;
+    background-color: #fff;
+    border-radius: 30px;
+    text-align: center;
+    z-index: 10;
+}
+.storyDiv > .bi-caret-right-fill {
+    color: #129510;
+    font-size: 80px;
+    position: absolute; 
+    margin-left: 1180px;
+    margin-bottom: 48px;
+    z-index: 20;
+    cursor: pointer; /* 손 모양으로 변경 */
+}
+.menImg {
+    width: 800px;
+    margin-top: 80px; /* 대화창이랑 이미지 위치 맞추기 */
+    position: absolute;
+}

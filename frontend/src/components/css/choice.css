@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'KCC-Hanbit';
+    font-weight: 500;
+    font-style: normal;
+    src: url("../fonts/KCC-Hanbit.woff");
+}
+
+body {
+    background-size: cover;
+}
+
+.choiceText {
+    width: 960px;
+    height: 150px;
+    background-color: #fff;
+    border-radius: 30px;
+    border: 10px solid #129510;
+    font-family: 'KCC-Hanbit';
+    font-size: 70px;
+    color: #129510;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* 가운데 정렬 */
+    margin-top: 45px;
+    margin-bottom: 80px;
+}
+.choicePotato {
+    max-width: 1200px;
+    margin: 0 auto; /* 가운데 정렬 */
+}
+.potatoImg {
+    width: 300px;
+}
+.potato1, .potato3 {
+    margin-bottom: 100px;
+}
+.potato2 {
+    margin: 0 145px;
+}
+.potato4 {
+    margin-left: 180px;
+    margin-right: 180px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'OAGothic-ExtraBold';
+    font-weight: 800;
+    font-style: normal;
+    src: url("../fonts/OAGothic-ExtraBold.ttf");
+}
+
+body {
+  background-size: cover;
+}
+.backgroundDiv {
+  font-family: 'OAGothic-ExtraBold';
+  margin-top: 250px;
+  text-align: center;
+}
+.logoImg {
+  width: 570px;
+  padding-left: 60px;
+  margin-bottom: 20px;
+}
+.startPlay {
+  font-size: 70px;
+  text-shadow: -6px -6px 0 #fff, 6px -6px 0 #fff, -6px 6px 0 #fff, 6px 6px 0 #fff;
+  color: #009220;
+  margin-bottom: 15px;
+}
+.startPlay:hover {
+  font-size: 68px;
+  margin-bottom: 18px;
+}
+.gallery {
+  font-size: 60px;
+  text-shadow: -6px -6px 0 #fff, 6px -6px 0 #fff, -6px 6px 0 #fff, 6px 6px 0 #fff;
+  color: #FF6A00;
+}
+.gallery:hover {
+  font-size: 58px;
+}

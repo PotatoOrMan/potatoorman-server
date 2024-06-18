@@ -1,0 +1,113 @@
+.photoModalContainer {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.photoModal {
+    width: 1020px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.7); /* 자식 요소에 opacity를 적용하지 않기 위해 rgba로 작성 */
+    border-radius: 30px;
+    text-align: center;
+    padding: 150px 0 120px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photoModal > .modalText { 
+    font-family: 'KCC-Hanbit';
+    font-size: 60px;
+}
+
+.photoModal > .spacebar {
+    width: 460px;
+    height: 75px;
+    background-color: #FBDC2E;
+    font-family: 'KCC-Hanbit';
+    font-size: 35px;
+    margin-top: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #767676;
+}
+
+.capturedImageContainer,
+.webcamContainer {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+
+.webcamBorder,
+.captureImgBorder {
+    border: 10px solid #fff;
+    height: 790px;
+}
+
+.Frame,
+.lineFrame {
+    width: 1340px;
+    position: absolute;
+    top: 50%;   /* 텍스트가 화면 정가운데 위치하도록 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.lineFrame {
+    width: 1600px;
+}
+
+.timeText {
+    position: fixed;
+    top: 50%;   /* 텍스트가 화면 정가운데 위치하도록 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 300px;
+    font-weight: 900;
+    font-family: 'OA-Gothic';
+    opacity: 0.7;
+    z-index: 100;
+}
+
+.sendEmail {
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 15px solid #fff;
+    border-radius: 30px;
+    top: 50%;   /* 정가운데 위치하도록 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* sendEmail안의 내용 정가운데 위치시키기 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+.sendEmail > p {
+    font-family: 'KCC-Hanbit';
+    font-size: 50px;
+}
+.sendInput { /* input 태그 스타일링 */
+    width: 465px;
+    height: 75px;
+    border: none;
+    outline: none; /* 클릭했을 때 테두리 없애기 */
+    font-size: 20px;
+    padding: 10px;
+}
+.buttonContainer button {
+    width: 200px;
+    height: 70px;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 20px;
+    background-color: #119A0E;
+}

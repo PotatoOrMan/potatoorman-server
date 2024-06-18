@@ -11,7 +11,7 @@ const sessionSecret = randomBytes.toString('hex')
 
 const storyRoute = require('./routes/story')
 const gaugeInfoRoute = require('./routes/gaugeInfo')
-// const pictureRoute = require('./routes/picture')
+const pictureRoute = require('./routes/savephoto')
 
 const app = express()
 app.use(session(sessionConfig));
@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 
 app.use('/storyApi', storyRoute)    // 스토리 대사
 app.use('/gaugeInfoApi', gaugeInfoRoute) // 게이지 정보 저장 및 결과창으로 정보 전달
-// app.use('/pictureApi', pictureRoute) // 갤러리 사진 저장 + 이메일 전송
+app.use('/savephotoApi', pictureRoute) // 갤러리 사진 저장 + 이메일 전송
 
 app.use(session({
     secret: sessionSecret,
