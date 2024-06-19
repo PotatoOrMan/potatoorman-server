@@ -52,7 +52,7 @@ export default function Gaugebar({ roundIdx }) {
                         // console.log(`count: ${prevCounter + 1}`);
                         return prevCounter + 1;
                     });
-                    return prevWidth + 15;
+                    return prevWidth + 16;
                 }
                 return prevWidth; // 1314px 이상일 경우 더 이상 증가하지 않음
             });

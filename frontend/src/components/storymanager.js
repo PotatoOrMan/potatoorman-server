@@ -93,7 +93,7 @@ export default function Storymanager() {
     const person6 = "감자"
     const limit6 = 0
     const navigateURL6 = "photo"
-    const resultImgURL6 = `../images/potatos/potato${propsNum.state.propsNum}_1.png`
+    const resultImgURL6 = `../images/potatos/potato${propsNum.state.propsNum}_0.png`
 
     if (success === 'O') {
         switch (personNum) {
