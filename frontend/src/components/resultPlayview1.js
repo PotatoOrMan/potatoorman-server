@@ -9,7 +9,7 @@ export default function ResultPlayview1({ potatoIdx }) {
     useEffect(() => {
         const fetchChangeData = async () => {
             try {
-                const response = await fetch(`/gaugeInfoApi/change`)
+                const response = await fetch(`http://13.125.230.135:8081/gaugeInfoApi/change`)
                 const data = await response.json()
                 const changeValue = data.changeOX;
                 console.log('Extracted change value:', changeValue);
