@@ -53,7 +53,7 @@ function CapturedImage({ capturedImage, potatoIdx }) {
       const formData = new FormData();
       formData.append('image', capturedImage);
 
-      const response = await fetch(`https://13.125.230.135:8081/savephotoApi/save`, {
+      const response = await fetch(`http://13.125.230.135:8081/savephotoApi/save`, {
         method: 'POST',
         body: formData
       });
@@ -81,12 +81,12 @@ function CapturedImage({ capturedImage, potatoIdx }) {
       const formData = new FormData();
       formData.append('image', capturedImage);
 
-      // const rr = await fetch('https://localhost:8081/savephotoApi/save', {
+      // const rr = await fetch('http://localhost:8081/savephotoApi/save', {
       //   method: "POST"
       // })
       // console.log(rr.text())
 
-      const response = await fetch(`https://13.125.230.135:8081/savephotoApi/save`, {
+      const response = await fetch(`http://13.125.230.135:8081/savephotoApi/save`, {
         method: 'POST',
         body: formData
       });
@@ -99,7 +99,7 @@ function CapturedImage({ capturedImage, potatoIdx }) {
       console.log('Server Response:', result);
 
       // 이메일 전송 요청
-      const emailResponse = await fetch(`https://13.125.230.135:8081/savephotoApi/submit`, {
+      const emailResponse = await fetch(`http://13.125.230.135:8081/savephotoApi/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
