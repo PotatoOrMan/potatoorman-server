@@ -1,6 +1,6 @@
 import "./css/reset.css";
 import "./css/gallery.css";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function TextView() {
@@ -15,32 +15,46 @@ function TextView() {
     )
 }
 
-function PhotoView() {
+function PhotoView({ images }) {
+    console.log(images)
+    if (!images || images.length === 0) {
+        return <div>No images to display</div>;
+    }
+
     return (
         <div className="photo-container">
-            <div className="photo-item"><img src="../images/frames/frame_1.png" alt="galleryImg"></img></div>
-            {/* <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div>
-            <div className="photo-item"></div> */}
+            {images.reverse().map((image, index) => (
+                <div className="photo-item" key={index}>
+                    <img src={`http://localhost:8081/images/${image}`} alt={`galleryImg${index + 1}`} />
+                </div>
+            ))}
         </div>
-    )
+    );
+
 }
 
 export default function Gallery() {
+    const [images, setImages] = useState([]);
+    const [time, setTime] = useState(0);
+
     useEffect(() => {
         document.body.style.backgroundImage = `url("../images/backgrounds/play_background1.png")`;
+
+        const fetchImages = async () => {
+            try {
+                const response = await fetch('http://localhost:8081/savephotoApi/gallery');
+                const data = await response.json();
+                setImages(data);
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        };
+
+        fetchImages();
     }, []);
 
     return <div className="photo-div">
-    <TextView />
-    <PhotoView />
+        <TextView />
+        <PhotoView images={images} />
     </div>
 }

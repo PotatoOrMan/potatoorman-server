@@ -19,6 +19,8 @@ router.post('/save', upload.single('image'), (req, res) => {
     // console.log(req.file.buffer.toString('base64'))
     const filename = "captured_image_" + (Date.now()) + ".png"
     fs.writeFileSync("./public/images/" + filename, req.file.buffer);
+
+    console.log("save test!!!!!!!!!!")
     // 이미지 데이터 처리 로직
     // console.log(imageData); // 이미지 데이터가 base64 형식으로 출력됩니다.
     // res.send('이미지가 성공적으로 전송되었습니다.');
@@ -40,6 +42,9 @@ router.use((req, res, next) => {
 router.post('/submit', (req, res) => {
     let authuser = req.session.authuser;
     let authpass = req.session.authpass;
+    let sendInput = req.body.sendInput
+
+    console.log("sendInput Test: ", sendInput)
 
     try {
         // if (!req.file || !req.body.email) {
@@ -68,9 +73,9 @@ router.post('/submit', (req, res) => {
         // 이메일 옵션 설정
         const mailOptions = {
             from: authuser, // 작성자
-            to: authuser, // 수신자 (클라이언트가 입력한 이메일)
+            to: sendInput, // 수신자 (클라이언트가 입력한 이메일)
             subject: '감자?남자!', // 메일 제목
-            text: 'Here is your photo! ' + req.body.filepath, // 메일 내용
+            text: '<감자?남자!>를 이용해주셔서 감사합니다! ' + req.body.filepath, // 메일 내용
         };
         console.log(mailOptions)
 
@@ -88,6 +93,18 @@ router.post('/submit', (req, res) => {
         console.error('Error processing request:', error);
         res.status(500).send('Error processing request.');
     }
+});
+
+router.get('/gallery', (req, res) => {
+    const imagesDir = path.join(__dirname, '..', 'public', 'images');
+    fs.readdir(imagesDir, (err, files) => {
+        if (err) {
+            res.status(500).send('Failed to load gallery images.');
+            return;
+        }
+        const filenames = files.map(file => file); // 파일 이름만 반환
+        res.json(filenames);
+    });
 });
 
 module.exports = router;

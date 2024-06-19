@@ -30,19 +30,50 @@ function CapturedImage({ capturedImage, potatoIdx }) {
   const captureRef = useRef(null);
   const [capturedURL, setCapturedURL] = useState("");
   const [email, setEmail] = useState("");
+  const [sendInput, setSendInput] = useState('');
 
   // 이미지 캡쳐 기능
-  const handleCapture = () => {
+  const handleCapture = (num) => {
     html2canvas(captureRef.current).then(canvas => {
       canvas.toBlob(async (blob) => {
         const filename = "captured_image_" + (Date.now()) + ".png"
         // const buffer = Buffer.from( await blob.arrayBuffer() );
         // fs.writeFileSync(filename, buffer );
         // saveAs(blob, filename);
-        fetchData(blob); // 캡쳐한 이미지를 서버로 전송
+        console.log("num", num)
+        console.log("sendInput", sendInput)
+        if (num === 1) fetchData(blob, sendInput); // 캡쳐한 이미지를 서버로 전송
+        else if (num === 0) fetchDatas(blob)
       }, "image/png");
     });
   };
+
+  const fetchDatas = async (capturedImage) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', capturedImage);
+
+      const response = await fetch(`http://localhost:8081/savephotoApi/save`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send image');
+      }
+
+      const result = await response.json();
+      console.log('Server Response:', result);
+
+      // Return the result or handle it as needed
+      return result;
+
+    } catch (error) {
+      console.error('Error:', error);
+      throw error; // Re-throw the error if necessary
+    }
+  };
+
 
   const fetchData = async (capturedImage) => {
     try {
@@ -73,7 +104,7 @@ function CapturedImage({ capturedImage, potatoIdx }) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, filepath: result.filepath })
+        body: JSON.stringify({ email, filepath: result.filepath, sendInput })
       });
 
       if (!emailResponse.ok) {
@@ -100,11 +131,10 @@ function CapturedImage({ capturedImage, potatoIdx }) {
       </div>
       <div className="sendEmail">
         <p>사진을 전송하시겠습니까?</p>
-        <input type='email' placeholder="이메일 입력" className="sendInput" />
+        <input type='email' placeholder="이메일 입력" className="sendInput" value={sendInput} onChange={(e) => setSendInput(e.target.value)} />
         <div className="buttonContainer">
-          <Link to="/"><button style={{ backgroundColor: '#575757', marginRight: '130px' }}>아니요</button></Link>
-          {/* <Link to="/"><button onClick={handleCapture}>전송</button></Link> */}
-          <button onClick={handleCapture}>전송</button>
+          <Link to="/"><button style={{ backgroundColor: '#575757', marginRight: '130px' }} onClick={() => handleCapture(0)}>아니요</button></Link>
+          <Link to="/"><button onClick={() => handleCapture(1)}>전송</button></Link>
         </div>
       </div>
     </>
@@ -168,6 +198,3 @@ export default function Photo() {
         <WebCam setCapturedImage={setCapturedImage} time={time} potatoIdx={potatoIdx} />
   );
 }
-
-
-//filesaver

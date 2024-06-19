@@ -73,7 +73,7 @@ export default function ResultPlayview2() {
         gauge1: '85px',
         gauge2: '85px',
         gauge3: '85px',
-        finalGauge: '85px'
+        finalGauge: '95px'
     });
 
     const setTimeouts = (newScores) => {
