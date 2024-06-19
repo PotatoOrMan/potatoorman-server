@@ -4,6 +4,7 @@ import WebcamCapture from "./webcamCapture";
 import { useLocation, Link } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { saveAs } from 'file-saver';
+// import * as fs from 'fs';
 
 
 function PhotoModal() {
@@ -17,15 +18,27 @@ function PhotoModal() {
   );
 }
 
+function blobToBase64(blob) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
+
 function CapturedImage({ capturedImage, potatoIdx }) {
   const captureRef = useRef(null);
   const [capturedURL, setCapturedURL] = useState("");
+  const [email, setEmail] = useState("");
 
   // 이미지 캡쳐 기능
   const handleCapture = () => {
     html2canvas(captureRef.current).then(canvas => {
-      canvas.toBlob(blob => {
-        saveAs(blob, "captured_image.png");
+      canvas.toBlob(async (blob) => {
+        const filename = "captured_image_" + (Date.now()) + ".png"
+        // const buffer = Buffer.from( await blob.arrayBuffer() );
+        // fs.writeFileSync(filename, buffer );
+        // saveAs(blob, filename);
         fetchData(blob); // 캡쳐한 이미지를 서버로 전송
       }, "image/png");
     });
@@ -33,26 +46,48 @@ function CapturedImage({ capturedImage, potatoIdx }) {
 
   const fetchData = async (capturedImage) => {
     try {
-        const response = await fetch(`/savephotoApi/save`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ image: capturedImage })
-        });
+      // let id
+      const formData = new FormData();
+      formData.append('image', capturedImage);
 
-        if (!response.ok) {
-            throw new Error('Failed to send image');
-        }
+      // const rr = await fetch('http://localhost:8081/savephotoApi/save', {
+      //   method: "POST"
+      // })
+      // console.log(rr.text())
 
-        const result = await response.text();
-        console.log(result);
+      const response = await fetch(`http://localhost:8081/savephotoApi/save`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send image');
+      }
+
+      const result = await response.json()
+      console.log('Server Response:', result);
+
+      // 이메일 전송 요청
+      const emailResponse = await fetch(`http://localhost:8081/savephotoApi/submit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, filepath: result.filepath })
+      });
+
+      if (!emailResponse.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      const emailResult = await emailResponse.text();
+      console.log('Email Response:', emailResult);
     } catch (error) {
-        console.error('Error:', error);
+      console.error('Error:', error);
     }
-};
+  };
 
-
+  // handleCapture();
 
   return (
     <>
