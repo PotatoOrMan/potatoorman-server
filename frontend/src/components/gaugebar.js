@@ -11,7 +11,7 @@ export default function Gaugebar({ roundIdx }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://13.125.230.135:8081/gaugeInfoApi/${roundIdx}`, {
+                const response = await fetch(`https://13.125.230.135:8081/gaugeInfoApi/${roundIdx}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

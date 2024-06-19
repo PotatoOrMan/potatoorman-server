@@ -42,7 +42,7 @@ export default function ResultPlayview2() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://13.125.230.135:8081/gaugeInfoApi/result`, {
+                const response = await fetch(`https://13.125.230.135:8081/gaugeInfoApi/result`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

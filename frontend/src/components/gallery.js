@@ -25,7 +25,7 @@ function PhotoView({ images }) {
         <div className="photo-container">
             {images.reverse().map((image, index) => (
                 <div className="photo-item" key={index}>
-                    <img src={`http://13.125.230.135:8081/images/${image}`} alt={`galleryImg${index + 1}`} />
+                    <img src={`https://13.125.230.135:8081/images/${image}`} alt={`galleryImg${index + 1}`} />
                 </div>
             ))}
         </div>
@@ -42,7 +42,7 @@ export default function Gallery() {
 
         const fetchImages = async () => {
             try {
-                const response = await fetch('http://13.125.230.135:8081/savephotoApi/gallery');
+                const response = await fetch('https://13.125.230.135:8081/savephotoApi/gallery');
                 const data = await response.json();
                 setImages(data);
             } catch (error) {
