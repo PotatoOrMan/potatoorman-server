@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 export default function Home() {
     const fetchData = async () => {
         try {
-            const response = await fetch(`http://13.125.230.135:8081/storyApi/start`, {
+            const response = await fetch(`http://13.125.230.135/storyApi/start`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
