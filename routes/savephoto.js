@@ -25,7 +25,7 @@ router.post('/save', upload.single('image'), (req, res) => {
     // console.log(imageData); // 이미지 데이터가 base64 형식으로 출력됩니다.
     // res.send('이미지가 성공적으로 전송되었습니다.');
     res.json({
-        'filepath': "http://localhost:8081/images/" + filename
+        'filepath': "http://13.125.230.135:8081/images/" + filename
     })
 });
 
