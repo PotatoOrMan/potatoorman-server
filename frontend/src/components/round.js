@@ -25,7 +25,7 @@ export default function Round() {
                     setRoundIdx(idx => idx + 1)
                     if (roundIdx < 3) setShowModal(true); // 라운드가 시작될 때마다 모달창 띄우기
                 }
-            }, 500)
+            }, 11000)
             return () => clearTimeout(roundTime)
         }
     }, [roundIdx, showModal])
